@@ -1,7 +1,7 @@
   #!/bin/bash
   
   FILE="report.txt"
-  
+   
   export low=0
   export medium=0
   export high=0
