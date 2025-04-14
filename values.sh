@@ -2,6 +2,12 @@
 
 FILE="report.txt"
 
+low=0
+medium=0
+high=0
+critical=0
+unknown=0
+
 low=$(grep  "LOW" "$FILE" | wc -l)
 medium=$(grep  "MEDIUM" "$FILE" | wc -l)
 high=$(grep  "HIGH" "$FILE" | wc -l)
