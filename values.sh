@@ -1,20 +1,15 @@
 #!/bin/bash
 
-line=$(sed -n '16p' report.txt)
+FILE="report.txt"
 
-echo $line
+low=$(grep  "LOW" "$FILE" | wc -l)
+medium=$(grep  "MEDIUM" "$FILE" | wc -l)
+high=$(grep  "HIGH" "$FILE" | wc -l)
+critical=$(grep  "CIRITCAL" "$FILE" | wc -l)
+unknown=$(grep "UNKNOWN" "$FILE" | wc -l)
 
-UNKNOWN=$(echo "$line" | grep -o 'UNKNOWN: [0-9]*' | sed 's/[^0-9]*//g')
-LOW=$(echo "$line" | grep -o 'LOW: [0-9]*' | sed 's/[^0-9]*//g')
-MEDIUM=$(echo "$line" | grep -o 'MEDIUM: [0-9]*' | sed 's/[^0-9]*//g')
-HIGH=$(echo "$line" | grep -o 'HIGH: [0-9]*' | sed 's/[^0-9]*//g')
-CRITICAL=$(echo "$line" | grep -o 'CRITICAL: [0-9]*' | sed 's/[^0-9]*//g')
-
-TOTAL=$(echo "$line" | grep -o 'Total: [0-9]*' | sed 's/[^0-9]*//g')
-
-echo "Total: $TOTAL"
-echo "UNKNOWN: $UNKNOWN"
-echo "LOW: $LOW"
-echo "MEDIUM: $MEDIUM"
-echo "HIGH: $HIGH"
-echo "CRITICAL: $CRITICAL"
+echo "Vulnerability Severity Count:"
+echo "Low:      $low"
+echo "Medium:   $medium"
+echo "High:     $high"
+echo "Critical: $critical"
