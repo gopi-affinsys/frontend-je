@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment{
          DOCKER_IMAGE="gopikondaji/newfrontend:$BUILD_NUMBER"
-    }
+    } 
     stages {
         stage('Checkout'){
             steps{
