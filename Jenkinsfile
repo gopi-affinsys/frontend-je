@@ -11,7 +11,7 @@ pipeline {
         }
         stage('Install dependencies') {
             steps {
-                    sh 'cd frontend && npm i'
+                    sh 'cd frontend'
             }
         }
         stage("Build Docker image"){
