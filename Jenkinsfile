@@ -2,16 +2,16 @@ pipeline {
     agent any
     environment{
          DOCKER_IMAGE="gopikondaji/newfrontend:$BUILD_NUMBER"
-    } 
+    }
     stages {
         stage('Checkout'){
             steps{
-                git branch: 'main', url: 'https://github.com/gopi-affinsys/frontend-je'
+                checkout([$class: 'GitSCM', branches: [[name: '**/tags/**']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'git-deploy', refspec: '+refs/tags/*:refs/remotes/origin/tags/*', url: 'https://github.com/gopi-affinsys/frontend-je/']]])
             }
         }
         stage('Install dependencies') {
             steps {
-                    sh 'cd frontend'
+                    sh 'cd frontend && npm i'
             }
         }
         stage("Build Docker image"){
